@@ -1,0 +1,10 @@
+* {
+  box-sizing: border-box;
+}
+
+ul,
+li {
+  padding: 0 !important;
+  margin: 0;
+  list-style: none;
+}
