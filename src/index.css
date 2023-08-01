@@ -2,9 +2,69 @@
   box-sizing: border-box;
 }
 
-ul,
-li {
-  padding: 0 !important;
+nav,
+main,
+footer,
+div,
+section {
   margin: 0;
-  list-style: none;
+  padding: 0;
+}
+
+body {
+  background: url(images/flower.jpg) no-repeat right top/cover;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 14px;
+}
+
+.navbar {
+  background-color: #402608;
+}
+
+.nav-item {
+  margin: 10px 20px;
+  text-align: center;
+}
+
+.logo {
+  margin: 0 20px;
+  width: 217px;
+  height: 60px;
+  background: url(images/logo.png) center center/cover;
+}
+
+.nav-link {
+  color: #e6ddd0;
+}
+
+.nav-link:hover {
+  color: #d6ad60;
+}
+
+main {
+  margin: 30px auto;
+}
+
+.class-item {
+  padding: 20px;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #402608;
+  border-color: #402608;
+}
+
+.btn-primary:hover,
+.btn-primary:active {
+  background-color: #d6ad60;
+  border-color: #402608;
+}
+
+footer {
+  border-top: 1px solid #333;
+}
+
+.license {
+  margin: 30px auto;
 }
