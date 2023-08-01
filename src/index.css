@@ -2,9 +2,20 @@
   box-sizing: border-box;
 }
 
-ul,
-li {
-  padding: 0 !important;
+nav,
+main,
+footer,
+div,
+section {
   margin: 0;
-  list-style: none;
+  padding: 0;
+}
+
+.class-item {
+  padding: 20px;
+  text-align: center;
+}
+
+footer {
+  border-top: 1px solid #333;
 }
