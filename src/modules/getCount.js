@@ -1,7 +1,9 @@
 const getCounts = (results) => {
-  const counts = results;
+  let counts = 0;
 
-  console.log(counts);
+  results ? (counts += results.length) : counts;
+
+  return counts;
 };
 
 module.exports = { getCounts };
