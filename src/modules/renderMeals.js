@@ -1,9 +1,12 @@
 const { addLike, getAndUpdateLikes } = require('./addLike');
+
 const home = document.querySelector('#home');
 
 // involvement API
+/* eslint-disable operator-linebreak */
 const baseUrl =
   'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi';
+/* eslint-disable operator-linebreak */
 
 // createApp(baseUrl);
 const appId = 'HWmRhYpaSgwk9IP9UqTB';
@@ -29,9 +32,9 @@ const renderMeals = async (foods) => {
 
   home.innerHTML = allMeals.join('');
 
-  const add_like = document.querySelectorAll('.add_like');
+  const addLikes = document.querySelectorAll('.add_like');
 
-  add_like.forEach(async (btn) => {
+  addLikes.forEach(async (btn) => {
     const mealsId = btn.querySelector('i').id;
     const likeCounts = await getAndUpdateLikes(mealsId, baseUrl, appId);
 
@@ -40,7 +43,7 @@ const renderMeals = async (foods) => {
     btn.addEventListener('click', (e) => {
       const itemId = e.target.id;
       e.target.classList.toggle('liked');
-      addLike(itemId, baseUrl, appId);
+      s(itemId, baseUrl, appId);
     });
   });
 };
