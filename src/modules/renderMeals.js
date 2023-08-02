@@ -1,4 +1,5 @@
 const { addLike } = require('./addLike');
+const { loadLikes, mealLikes } = require('./loadLikes');
 const home = document.querySelector('#home');
 
 // involvement API
@@ -12,6 +13,14 @@ const appId = 'HWmRhYpaSgwk9IP9UqTB';
 home.innerHTML = `<div class="spinner-border text-primary" role="status">
 <span class="visually-hidden">Loading...</span>
 </div>`;
+
+const results = loadLikes(baseUrl, appId).then(() => {
+  console.log(results);
+});
+
+if (results) {
+  console.log(results);
+}
 
 const renderMeals = (foods) => {
   const allMeals = foods.meals.map(
@@ -39,4 +48,4 @@ const renderMeals = (foods) => {
   });
 };
 
-module.exports = { renderMeals, addLike };
+module.exports = { renderMeals };

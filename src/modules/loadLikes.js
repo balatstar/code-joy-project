@@ -16,7 +16,7 @@ const loadLikes = async (baseUrl, appID) => {
 
     const result = await response.json();
     console.log(result);
-    getCounts(result);
+    return result;
   } catch (error) {
     console.log(error);
   }
