@@ -18,8 +18,11 @@ home.innerHTML = `<div class="spinner-border text-primary" role="status">
 
 const renderMeals = async (foods) => {
   const allMeals = foods.meals.map(
-    ({ idMeal, strMeal, strMealThumb }) =>
-      `<section class="card meal mb-5 p-2 " id=${idMeal}>
+    ({
+      idMeal,
+      strMeal,
+      strMealThumb,
+    }) => `<section class="card meal mb-5 p-2 " id=${idMeal}>
           <figure class="card-img-top" >
             <img src=${strMealThumb} alt=${strMeal} />
           </figure>
@@ -43,7 +46,7 @@ const renderMeals = async (foods) => {
     btn.addEventListener('click', (e) => {
       const itemId = e.target.id;
       e.target.classList.toggle('liked');
-      s(itemId, baseUrl, appId);
+      addLike(itemId, baseUrl, appId);
     });
   });
 };
