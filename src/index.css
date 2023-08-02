@@ -12,7 +12,7 @@ section {
 }
 
 body {
-  background: url("./images/flower.jpg") no-repeat right top/cover;
+  background: #e6ddd0 url("images/flower.jpg") no-repeat right top;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 14px;
 }
@@ -31,6 +31,7 @@ body {
   width: 217px;
   height: 60px;
   background: url("./images/logo.png") center center/cover;
+  list-style: none;
 }
 
 .nav-link {
@@ -83,5 +84,41 @@ img {
 
 .meal p {
   margin: 0;
+  font-size: 1.5rem;
+}
+
+.mod-content {
+  margin: 0 auto;
+  width: 800px;
+  max-width: 100%;
+}
+
+.mod-image {
+  text-align: center;
+}
+
+.mod-image img {
+  border: 5px solid #402608;
+  border-radius: 10px;
+}
+
+.mod-title {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.mod-details > * {
+  padding-top: 10px;
+}
+
+.mod-instructions {
+  margin: 0;
+  padding: 0 10px;
+}
+
+.mod-comment-head,
+.mod-form-head {
+  padding: 30px 0 20px 0;
+  text-align: center;
   font-size: 1.5rem;
 }

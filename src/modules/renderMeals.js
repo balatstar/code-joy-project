@@ -32,7 +32,7 @@ const renderMeals = (foods) => {
           <div class="card-body d-flex flex-row justify-content-between align-items-center">
           <h2 class="card-title col-8"> ${strMeal} </h2> <p  class="add_like"> <i id=${idMeal} class="bi bi-heart-fill like col-3"></i> Likes</p>
           </div>
-          <button class="btn btn-primary"> Comment </button>
+          <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#myModal-${idMeal}"> Comment </button>
         </section>`,
   );
 
