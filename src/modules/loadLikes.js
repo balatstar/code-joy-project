@@ -1,5 +1,3 @@
-const { getCounts } = require('./getCount');
-
 const loadLikes = async (baseUrl, appID) => {
   const endpoints = `${baseUrl}/apps/${appID}/likes/`;
 
@@ -15,10 +13,10 @@ const loadLikes = async (baseUrl, appID) => {
     }
 
     const result = await response.json();
-    console.log(result);
     return result;
   } catch (error) {
     console.log(error);
+    return [];
   }
 };
 

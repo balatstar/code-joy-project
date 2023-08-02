@@ -81,7 +81,27 @@ img {
   color: red;
 }
 
+.meal {
+  width: 100%;
+}
+
+.meal h2 {
+  font-size: 1.5rem;
+}
+
 .meal p {
   margin: 0;
+  font-size: 1rem;
+  text-align: end;
+  cursor: pointer;
+}
+
+.meal p i {
   font-size: 1.5rem;
+}
+
+@media screen and (min-width: 500px) {
+  .meal {
+    width: 33%;
+  }
 }

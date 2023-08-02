@@ -22,19 +22,36 @@ const addLikeCounts = async (baseUrl, gameID, itemId) => {
       );
     }
 
-    const successMessage = await response.text();
-    console.log(successMessage);
+    return true;
   } catch (error) {
     console.log(error);
+    return false;
   }
 };
 
-const addLike = (e, url, appId) => {
-  const itemId = e.target.id;
-  console.log(itemId);
-
-  addLikeCounts(url, appId, itemId);
-  loadLikes(url, appId);
+const updateLikeCountInDOM = (id, newLikes) => {
+  const likeCountElement = document.getElementById(`likecount-${id}`);
+  if (likeCountElement) {
+    likeCountElement.textContent = `${newLikes} Likes`; // Update the like count text
+  }
 };
 
-module.exports = { addLike };
+const getAndUpdateLikes = async (id, baseUrl, appId) => {
+  const results = await loadLikes(baseUrl, appId);
+  const mealsLikes = results.find((like) => like.item_id === id);
+  const likesCount = mealsLikes ? mealsLikes.likes : 0;
+
+  // Update the like count in the DOM
+  updateLikeCountInDOM(id, likesCount);
+  return mealsLikes ? mealsLikes.likes : 0;
+};
+
+const addLike = async (id, url, appId) => {
+  const addLikeSuccess = await addLikeCounts(url, appId, id);
+
+  if (addLikeSuccess) {
+    getAndUpdateLikes(id, url, appId);
+  }
+};
+
+module.exports = { addLike, getAndUpdateLikes };
