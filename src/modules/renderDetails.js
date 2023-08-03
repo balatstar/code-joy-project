@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// Function to fetch filtered meals
 async function fetchFilteredMeals() {
   const apiUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?f=s';
 
@@ -48,6 +49,7 @@ async function fetchFilteredMeals() {
   }
 }
 
+// Function to fetch comments
 async function fetchComments(itemId) {
   const baseUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi';
   const appId = 'WEH8vE62XL75aTz1W6aU';
@@ -67,6 +69,7 @@ async function fetchComments(itemId) {
   }
 }
 
+// Function to render post modals
 function postMethods(filteredMeals) {
   const postContainer = document.querySelector('.modal-set');
 
@@ -112,6 +115,7 @@ function postMethods(filteredMeals) {
               <form>
                 <input type="text" id="name" name="name" placeholder="Your name">
                 <textarea id="comment" name="comment" placeholder="Your insights"></textarea>
+                <button type="submit" class="btn btn-primary mod-submit">Submit</button>
               </form>
             </div>
           </div>
@@ -131,5 +135,27 @@ function postMethods(filteredMeals) {
       postContainer.appendChild(postElement);
   });
 }
+// Function to fetch and display data with loading indicator
+async function fetchAndDisplayData() {
+  const loadingIndicator = document.querySelector('.loading-indicator');
+  
+  // Show the loading indicator
+  loadingIndicator.style.display = 'block';
+
+  try {
+    const filteredMeals = await fetchFilteredMeals();
+    
+    // Render post modals
+    postMethods(filteredMeals);
+  } catch (error) {
+    console.error('An error occurred:', error);
+  } finally {
+    // Hide the loading indicator
+    loadingIndicator.style.display = 'none';
+  }
+}
+
+// Call the function to fetch and display data
+fetchAndDisplayData();
 
 export { fetchFilteredMeals, postMethods };
