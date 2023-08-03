@@ -4,53 +4,77 @@ async function fetchFilteredMeals() {
   const apiUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?f=s';
 
   try {
-      const response = await fetch(apiUrl, {
-      });
-  
-      if (!response.ok) {
-          throw new Error('Error with fetch');
-      }
-  
-      const data = await response.json();
-  
-      const filteredMeals = data.meals.map(meal => {
-          const {
-              idMeal,
-              strMeal,
-              strCategory,
-              strArea,
-              strInstructions,
-              strMealThumb,
-              strTags,
-              strYoutube
-          } = meal;
-          return {
-              idMeal,
-              strMeal,
-              strCategory,
-              strArea,
-              strInstructions,
-              strMealThumb,
-              strTags,
-              strYoutube
-          };
-      });
-  
-      return filteredMeals;
+    const response = await fetch(apiUrl);
+
+    if (!response.ok) {
+      throw new Error('Error with fetch');
+    }
+
+    const data = await response.json();
+
+    const filteredMeals = data.meals.map(meal => {
+      const {
+        idMeal,
+        strMeal,
+        strCategory,
+        strArea,
+        strInstructions,
+        strMealThumb,
+        strTags,
+        strYoutube,
+      } = meal;
+      return {
+        idMeal,
+        strMeal,
+        strCategory,
+        strArea,
+        strInstructions,
+        strMealThumb,
+        strTags,
+        strYoutube,
+        comments: [], // Placeholder for comments
+      };
+    });
+
+    // Fetch and assign comments for each meal
+    for (const meal of filteredMeals) {
+      meal.comments = await fetchComments(meal.idMeal);
+    }
+
+    return filteredMeals;
   } catch (error) {
-      console.error('Error fetching data:', error);
-      throw error; 
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+}
+
+async function fetchComments(itemId) {
+  const baseUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi';
+  const appId = 'WEH8vE62XL75aTz1W6aU';
+
+  const url = `${baseUrl}/apps/${appId}/comments?item_id=${itemId}`;
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('Error with fetch');
+    }
+    const comments = await response.json();
+    return comments;
+  } catch (error) {
+    console.error('Error fetching comments:', error);
+    return [];
   }
 }
 
 function postMethods(filteredMeals) {
   const postContainer = document.querySelector('.modal-set');
 
-  filteredMeals.forEach((postData) => {
-      const postElement = document.createElement('div');
-      postElement.id = `myModal-${postData.idMeal}`;
-      postElement.classList.add('modal');
-      postElement.innerHTML = `
+  filteredMeals.forEach(postData => {
+    const postElement = document.createElement('div');
+    postElement.id = `myModal-${postData.idMeal}`;
+    postElement.classList.add('modal');
+    postElement.innerHTML = `
       <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
@@ -75,10 +99,14 @@ function postMethods(filteredMeals) {
             ${postData.strInstructions}
             </div>
             <div class="mod-comments">
-              <h3 class="mod-comment-head">Comments (2)</h3>
-              <div class="mod-comment">03/11/2021 Alex: I'd love to buy it!</div>
-              <div class="mod-comment">03/11/2021 Alex: I'd love to buy it!</div>
-            </div>
+        <h3 class="mod-comment-head">Comments (${postData.comments.length})</h3>
+        ${postData.comments
+          .map(
+            comment =>
+              `<div class="mod-comment">${comment.creation_date} ${comment.username}: ${comment.comment}</div>`
+          )
+          .join('')}
+      </div>
             <div class="mod-form">
               <h3 class="mod-form-head">Add a comment</h3>
               <form>
