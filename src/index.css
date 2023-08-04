@@ -12,9 +12,10 @@ section {
 }
 
 body {
-  background: #e6ddd0 url("images/flower.jpg") no-repeat right top;
+  background: url("./images/flower.jpg") no-repeat right top/cover;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 14px;
+  position: relative;
 }
 
 .navbar {
@@ -31,7 +32,6 @@ body {
   width: 217px;
   height: 60px;
   background: url("./images/logo.png") center center/cover;
-  list-style: none;
 }
 
 .nav-link {
@@ -82,43 +82,63 @@ img {
   color: red;
 }
 
+.meal {
+  width: 100%;
+}
+
+.meal h2 {
+  font-size: 1.5rem;
+}
+
 .meal p {
   margin: 0;
+  font-size: 1rem;
+  text-align: end;
+  cursor: pointer;
+}
+
+.meal p i {
   font-size: 1.5rem;
 }
 
-.mod-content {
-  margin: 0 auto;
-  width: 800px;
-  max-width: 100%;
+@media screen and (min-width: 500px) {
+  .meal {
+    width: 33%;
+  }
 }
 
-.mod-image {
-  text-align: center;
-}
-
-.mod-image img {
-  border: 5px solid #402608;
-  border-radius: 10px;
-}
-
-.mod-title {
-  text-align: center;
-  padding: 20px 0;
-}
-
-.mod-details > * {
-  padding-top: 10px;
-}
-
-.mod-instructions {
-  margin: 0;
-  padding: 0 10px;
-}
-
-.mod-comment-head,
-.mod-form-head {
-  padding: 30px 0 20px 0;
-  text-align: center;
+.bi-x-circle {
+  background: #f00;
+  padding: 0.5em;
   font-size: 1.5rem;
+  font-weight: bolder;
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.closeModal {
+  display: none;
+}
+
+.showModal {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  padding: 2em 1em;
+  background: #97949371;
+  backdrop-filter: blur(14px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modals {
+  background: #fff;
+  overflow-y: scroll;
+  height: 85vh;
+}
+
+.meaDetails p {
+  font-size: 0.7rem;
 }

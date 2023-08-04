@@ -1,10 +1,14 @@
-const { addLike } = require('./addLike');
-const { loadLikes, mealLikes } = require('./loadLikes');
+const { addLike, getAndUpdateLikes } = require('./addLike');
+const { handleModalToggle } = require('./modal');
+const { fetchMeal } = require('./renderDetails');
+
 const home = document.querySelector('#home');
 
 // involvement API
+/* eslint-disable operator-linebreak */
 const baseUrl =
   'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi';
+/* eslint-disable operator-linebreak */
 
 // createApp(baseUrl);
 const appId = 'HWmRhYpaSgwk9IP9UqTB';
@@ -14,36 +18,52 @@ home.innerHTML = `<div class="spinner-border text-primary" role="status">
 <span class="visually-hidden">Loading...</span>
 </div>`;
 
-const results = loadLikes(baseUrl, appId).then(() => {
-  console.log(results);
-});
-
-if (results) {
-  console.log(results);
-}
-
-const renderMeals = (foods) => {
+const renderMeals = async (foods) => {
   const allMeals = foods.meals.map(
-    ({ idMeal, strMeal, strMealThumb }) =>
-      `<section class="card meal mb-5 p-2" id=${idMeal}>
+    ({
+      idMeal,
+      strMeal,
+      strMealThumb,
+    }) => `<section class="card meal mb-5 p-2 " id=${idMeal}>
           <figure class="card-img-top" >
             <img src=${strMealThumb} alt=${strMeal} />
           </figure>
           <div class="card-body d-flex flex-row justify-content-between align-items-center">
-          <h2 class="card-title col-8"> ${strMeal} </h2> <p  class="add_like"> <i id=${idMeal} class="bi bi-heart-fill like col-3"></i> Likes</p>
+          <h2 class="card-title col-7"> ${strMeal} </h2> <p  class="add_like col-4 "> <i id='${idMeal}' class="bi bi-heart-fill like "></i> <br/> <span id='likecount-${idMeal}'> Likes</span>  </p>
           </div>
-          <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#myModal-${idMeal}"> Comment </button>
+          <button class="btn btn-primary comment" id='${idMeal}'  > Comment </button>
         </section>`,
   );
 
   home.innerHTML = allMeals.join('');
 
-  const add_like = document.querySelectorAll('.add_like');
+  const addLikes = document.querySelectorAll('.add_like');
+  const comments = document.querySelectorAll('.comment');
 
-  add_like.forEach((btn) => {
+  addLikes.forEach(async (btn) => {
+    const mealsId = btn.querySelector('i').id;
+    const likeCounts = await getAndUpdateLikes(mealsId, baseUrl, appId);
+
+    btn.innerHTML = ` <i id='${mealsId}' class="bi bi-heart-fill like "></i> <br/> <span id='likecount-${mealsId}'> ${likeCounts} Likes</span>   `;
+
     btn.addEventListener('click', (e) => {
+      const itemId = e.target.id;
       e.target.classList.toggle('liked');
-      addLike(e, baseUrl, appId);
+      addLike(itemId, baseUrl, appId);
+    });
+  });
+
+  comments.forEach(async (btn) => {
+    // const mealsId = btn.querySelector('i').id;
+    // const likeCounts = await getAndUpdateLikes(mealsId, baseUrl, appId);
+
+    // btn.innerHTML = ` <i id='${mealsId}' class="bi bi-heart-fill like "></i> <br/> <span id='likecount-${mealsId}'> ${likeCounts} Likes</span>   `;
+
+    btn.addEventListener('click', (e) => {
+      handleModalToggle();
+      const itemId = e.target.id;
+      console.log(itemId);
+      fetchMeal(itemId);
     });
   });
 };
