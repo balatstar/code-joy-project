@@ -1,9 +1,10 @@
-const { addLike, getAndUpdateLikes } = require('./addLike.js');
-
-const { handleModalToggle } = require('./modal.js');
-const { fetchMeal } = require('./renderDetails.js');
+const { addLike, getAndUpdateLikes } = require('./addLike');
+const { getCounts } = require('./getCount');
+const { handleModalToggle } = require('./modal');
+const { fetchMeal } = require('./renderDetails');
 
 const home = document.querySelector('#home');
+const homeLink = document.querySelector('#homeLink');
 
 // involvement API
 /* eslint-disable operator-linebreak */
@@ -20,6 +21,9 @@ home.innerHTML = `<div class="spinner-border text-primary" role="status">
 </div>`;
 
 const renderMeals = async (foods) => {
+  const homeCount = getCounts(foods.meals);
+  homeLink.textContent = `Home(${homeCount})`;
+
   const allMeals = foods.meals.map(
     ({
       idMeal,
@@ -39,7 +43,6 @@ const renderMeals = async (foods) => {
   home.innerHTML = allMeals.join('');
 
   const addLikes = document.querySelectorAll('.add_like');
-
   const comments = document.querySelectorAll('.comment');
 
   addLikes.forEach(async (btn) => {

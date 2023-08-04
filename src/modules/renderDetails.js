@@ -1,4 +1,4 @@
-import { getComments, postComment } from './comments.js';
+import { getComments, postComment } from './comments';
 
 const baseUrl = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
 
@@ -53,7 +53,7 @@ const fetchMeal = async (itemId) => {
     }
     const meal = await response.json();
     postMethods(meal.meals[0]);
-    return meal.meals[0];
+    return meal;
   } catch (error) {
     console.error('Error fetching comments:', error);
     return [];

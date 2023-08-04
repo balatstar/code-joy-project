@@ -4,7 +4,6 @@ import './index.css';
 // Bootstrap styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { getMeals } from './modules/getMeals';
-// import { getCounts } from './modules/getCount';
 // import { getMealsCategory } from './modules/getMealsCategories';
 
 // Meals url
