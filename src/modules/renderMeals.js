@@ -7,10 +7,7 @@ const home = document.querySelector('#home');
 const homeLink = document.querySelector('#homeLink');
 
 // involvement API
-/* eslint-disable operator-linebreak */
-const baseUrl =
-  'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi';
-/* eslint-disable operator-linebreak */
+const baseUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi';
 
 // createApp(baseUrl);
 const appId = 'HWmRhYpaSgwk9IP9UqTB';
