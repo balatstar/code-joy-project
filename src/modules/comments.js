@@ -46,6 +46,7 @@ const postComment = async (mealId) => {
 };
 
 const getComments = async (id) => {
+  console.log(id);
   const endpoints = `${baseUrl}/apps/${appId}`;
 
   try {
@@ -59,7 +60,9 @@ const getComments = async (id) => {
     }
     const response = await request.json();
 
-    renderComments(response);
+    if (id) {
+      renderComments(response);
+    }
   } catch (error) {
     console.log(error);
     return [];
