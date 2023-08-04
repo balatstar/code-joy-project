@@ -1,6 +1,7 @@
 // involvement API
 
 import { clearInput } from './clearInput';
+import { renderComments } from './rendComments';
 
 /* eslint-disable operator-linebreak */
 const baseUrl =
@@ -37,6 +38,7 @@ const postComment = async (mealId) => {
     }
     const data = await response.text();
     clearInput(userName, userComment);
+    getComments(mealId);
     return data;
   } catch (error) {
     console.log(error);
@@ -44,8 +46,10 @@ const postComment = async (mealId) => {
 };
 
 const getComments = async (id) => {
+  const endpoints = `${baseUrl}/apps/${appId}`;
+
   try {
-    const request = await fetch(`${APP_URL}/comments?item_id=${id}`, {
+    const request = await fetch(`${endpoints}/comments?item_id=${id}`, {
       method: 'GET',
     });
     if (!request.ok) {
@@ -54,13 +58,11 @@ const getComments = async (id) => {
       );
     }
     const response = await request.json();
-    if (response.length <= 0) {
-      return [];
-    }
-    console.log(response);
-    return response;
+
+    renderComments(response);
   } catch (error) {
     console.log(error);
+    return [];
   }
 };
 

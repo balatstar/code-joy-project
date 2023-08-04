@@ -1,4 +1,4 @@
-import { postComment } from './comments';
+import { getComments, postComment } from './comments';
 
 const baseUrl = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
 
@@ -25,6 +25,8 @@ const fetchMeal = async (itemId) => {
 };
 
 const postMethods = (postData) => {
+  getComments(postData.idMeal);
+
   postContainer.innerHTML = `  <section class="d-flex flex-column flex-lg-row justify-content-between">
             <figure class="col-12 col-lg-6">
               <img src="${postData.strMealThumb}" />
@@ -47,11 +49,11 @@ const postMethods = (postData) => {
         </section>
     `;
 
-  Submit.addEventListener('click', (e) => {
+  Submit.addEventListener('click', async (e) => {
     e.preventDefault();
-    const commentSuccess = postComment(postData);
+    const commentSuccess = await postComment(postData.idMeal);
 
-    if (commentSuccess) {
+    if (!commentSuccess) {
       Submit.textContent = 'Comment submmited successfully';
     }
   });
