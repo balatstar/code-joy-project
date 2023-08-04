@@ -3,12 +3,8 @@
 import { clearInput } from './clearInput';
 import { renderComments } from './rendComments';
 
-/* eslint-disable operator-linebreak */
-const baseUrl =
-  'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi';
-/* eslint-disable operator-linebreak */
+const baseUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi';
 
-// createApp(baseUrl);
 const appId = 'HWmRhYpaSgwk9IP9UqTB';
 
 const userName = document.querySelector('#name');
