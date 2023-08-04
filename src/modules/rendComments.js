@@ -5,9 +5,8 @@ const loadComments = document.querySelector('.userComments');
 const commentCount = document.querySelector('.commentHeader');
 
 const renderComments = (comments) => {
-  const showComments = comments.map(
-    ({ creation_date, username, comment }) => `<div>
-<small> ${creation_date} </small> <p> ${username}: ${comment} </p>
+  const showComments = comments.map((com) => `<div>
+<small> ${com.creation_date} </small> <p> ${com.username}: ${com.comment} </p>
     </div>`,
   );
 

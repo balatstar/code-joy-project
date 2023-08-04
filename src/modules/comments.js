@@ -14,6 +14,32 @@ const appId = 'HWmRhYpaSgwk9IP9UqTB';
 const userName = document.querySelector('#name');
 const userComment = document.querySelector('#comment');
 
+
+const getComments = async (id) => {
+  console.log(id);
+  const endpoints = `${baseUrl}/apps/${appId}`;
+
+  try {
+    const request = await fetch(`${endpoints}/comments?item_id=${id}`, {
+      method: 'GET',
+    });
+    if (!request.ok) {
+      throw new Error(
+        `Unable to fetch ${request.status} ${request.statusText}`,
+      );
+    }
+    const response = await request.json();
+
+    if (id) {
+      renderComments(response);
+    }
+    return response;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
 const postComment = async (mealId) => {
   const endpoints = `${baseUrl}/apps/${appId}/comments/`;
 
@@ -42,30 +68,6 @@ const postComment = async (mealId) => {
     return data;
   } catch (error) {
     console.log(error);
-  }
-};
-
-const getComments = async (id) => {
-  console.log(id);
-  const endpoints = `${baseUrl}/apps/${appId}`;
-
-  try {
-    const request = await fetch(`${endpoints}/comments?item_id=${id}`, {
-      method: 'GET',
-    });
-    if (!request.ok) {
-      throw new Error(
-        `Unable to fetch ${request.status} ${request.statusText}`,
-      );
-    }
-    const response = await request.json();
-
-    if (id) {
-      renderComments(response);
-    }
-  } catch (error) {
-    console.log(error);
-    return [];
   }
 };
 
