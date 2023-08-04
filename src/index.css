@@ -15,6 +15,7 @@ body {
   background: url("./images/flower.jpg") no-repeat right top/cover;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 14px;
+  position: relative;
 }
 
 .navbar {
@@ -98,6 +99,48 @@ img {
 
 .meal p i {
   font-size: 1.5rem;
+}
+
+@media screen and (min-width: 500px) {
+  .meal {
+    width: 33%;
+  }
+}
+
+.bi-x-circle {
+  background: #f00;
+  padding: 0.5em;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.closeModal {
+  display: none;
+}
+
+.showModal {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  padding: 2em 1em;
+  background: #97949371;
+  backdrop-filter: blur(14px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modals {
+  background: #fff;
+  overflow-y: scroll;
+  height: 85vh;
+}
+
+.meaDetails p {
+  font-size: 0.7rem;
 }
 
 @media screen and (min-width: 500px) {

@@ -1,4 +1,7 @@
-const { addLike, getAndUpdateLikes } = require('./addLike');
+const { addLike, getAndUpdateLikes } = require('./addLike.js');
+
+const { handleModalToggle } = require('./modal.js');
+const { fetchMeal } = require('./renderDetails.js');
 
 const home = document.querySelector('#home');
 
@@ -29,13 +32,15 @@ const renderMeals = async (foods) => {
           <div class="card-body d-flex flex-row justify-content-between align-items-center">
           <h2 class="card-title col-7"> ${strMeal} </h2> <p  class="add_like col-4 "> <i id='${idMeal}' class="bi bi-heart-fill like "></i> <br/> <span id='likecount-${idMeal}'> Likes</span>  </p>
           </div>
-          <button class="btn btn-primary"> Comment </button>
+          <button class="btn btn-primary comment" id='${idMeal}'  > Comment </button>
         </section>`,
   );
 
   home.innerHTML = allMeals.join('');
 
   const addLikes = document.querySelectorAll('.add_like');
+
+  const comments = document.querySelectorAll('.comment');
 
   addLikes.forEach(async (btn) => {
     const mealsId = btn.querySelector('i').id;
@@ -47,6 +52,15 @@ const renderMeals = async (foods) => {
       const itemId = e.target.id;
       e.target.classList.toggle('liked');
       addLike(itemId, baseUrl, appId);
+    });
+  });
+
+  comments.forEach(async (btn) => {
+    btn.addEventListener('click', (e) => {
+      handleModalToggle();
+      const itemId = e.target.id;
+      console.log(itemId);
+      fetchMeal(itemId);
     });
   });
 };
