@@ -1,4 +1,4 @@
-import { getComments, postComment } from './comments';
+import { getComments, postComment } from './comments.js';
 
 const baseUrl = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
 
@@ -9,20 +9,6 @@ const Submit = document.querySelector('#Submit');
 postContainer.innerHTML = `<div class="spinner-border text-primary" role="status">
 <span class="visually-hidden">Loading...</span>
 </div>`;
-
-const fetchMeal = async (itemId) => {
-  try {
-    const response = await fetch(`${baseUrl}${itemId}`);
-    if (!response.ok) {
-      throw new Error('Error with fetch');
-    }
-    const meal = await response.json();
-    postMethods(meal.meals[0]);
-  } catch (error) {
-    console.error('Error fetching comments:', error);
-    return [];
-  }
-};
 
 const postMethods = (postData) => {
   getComments(postData.idMeal);
@@ -57,6 +43,21 @@ const postMethods = (postData) => {
       Submit.textContent = 'Comment submmited successfully';
     }
   });
+};
+
+const fetchMeal = async (itemId) => {
+  try {
+    const response = await fetch(`${baseUrl}${itemId}`);
+    if (!response.ok) {
+      throw new Error('Error with fetch');
+    }
+    const meal = await response.json();
+    postMethods(meal.meals[0]);
+    return meal.meals[0];
+  } catch (error) {
+    console.error('Error fetching comments:', error);
+    return [];
+  }
 };
 
 export { fetchMeal, postMethods };

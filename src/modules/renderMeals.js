@@ -1,8 +1,7 @@
-const { addLike, getAndUpdateLikes } = require('./addLike');
+const { addLike, getAndUpdateLikes } = require('./addLike.js');
 
-const { handleModalToggle } = require('./modal');
-const { fetchMeal } = require('./renderDetails');
-
+const { handleModalToggle } = require('./modal.js');
+const { fetchMeal } = require('./renderDetails.js');
 
 const home = document.querySelector('#home');
 
@@ -43,7 +42,6 @@ const renderMeals = async (foods) => {
 
   const comments = document.querySelectorAll('.comment');
 
-
   addLikes.forEach(async (btn) => {
     const mealsId = btn.querySelector('i').id;
     const likeCounts = await getAndUpdateLikes(mealsId, baseUrl, appId);
@@ -58,11 +56,6 @@ const renderMeals = async (foods) => {
   });
 
   comments.forEach(async (btn) => {
-    // const mealsId = btn.querySelector('i').id;
-    // const likeCounts = await getAndUpdateLikes(mealsId, baseUrl, appId);
-
-    // btn.innerHTML = ` <i id='${mealsId}' class="bi bi-heart-fill like "></i> <br/> <span id='likecount-${mealsId}'> ${likeCounts} Likes</span>   `;
-
     btn.addEventListener('click', (e) => {
       handleModalToggle();
       const itemId = e.target.id;
