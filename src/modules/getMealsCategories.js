@@ -1,11 +1,8 @@
 const getMealsCategory = async () => {
   try {
     const res = await fetch(
-      'https://www.themealdb.com/api/json/v1/1/lookup.php?i=52770',
+      'https://www.themealdb.com/api/json/v1/1/categories.php',
     );
-    // const res = await fetch(
-    //   'https://www.themealdb.com/api/json/v1/1/categories.php',
-    // );
 
     if (!res.ok) {
       throw new Error(`Unable to fethc ${res.status} ${res.statusText}`);
