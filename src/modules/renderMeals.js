@@ -1,8 +1,10 @@
 const { addLike, getAndUpdateLikes } = require('./addLike');
+const { getCounts } = require('./getCount');
 const { handleModalToggle } = require('./modal');
 const { fetchMeal } = require('./renderDetails');
 
 const home = document.querySelector('#home');
+const homeLink = document.querySelector('#homeLink');
 
 // involvement API
 /* eslint-disable operator-linebreak */
@@ -19,6 +21,9 @@ home.innerHTML = `<div class="spinner-border text-primary" role="status">
 </div>`;
 
 const renderMeals = async (foods) => {
+  const homeCount = getCounts(foods.meals);
+  homeLink.textContent = `Home(${homeCount})`;
+
   const allMeals = foods.meals.map(
     ({
       idMeal,
@@ -54,11 +59,6 @@ const renderMeals = async (foods) => {
   });
 
   comments.forEach(async (btn) => {
-    // const mealsId = btn.querySelector('i').id;
-    // const likeCounts = await getAndUpdateLikes(mealsId, baseUrl, appId);
-
-    // btn.innerHTML = ` <i id='${mealsId}' class="bi bi-heart-fill like "></i> <br/> <span id='likecount-${mealsId}'> ${likeCounts} Likes</span>   `;
-
     btn.addEventListener('click', (e) => {
       handleModalToggle();
       const itemId = e.target.id;

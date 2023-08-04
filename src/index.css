@@ -32,6 +32,7 @@ body {
   width: 217px;
   height: 60px;
   background: url("./images/logo.png") center center/cover;
+  cursor: pointer;
 }
 
 .nav-link {
