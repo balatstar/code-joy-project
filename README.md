@@ -22,9 +22,9 @@
 - [🙏 Acknowledgements](#acknowledgements)
 - [📝 License](#license)
 
-# 📖 A Capstone Group Porject with Webpack <a name="about-project"></a>
+# 📖 A Capstone Group Project with Webpack <a name="about-project"></a>
 
-A Capstone Group Porject developed with webpack, gitflow, githubflow and the best combo of HTML, CSS and JAVASCRIPT. In addition, i added Linters for Html, Css and Javascript.
+A Capstone Group Porject developed with webpack, gitflow, githubflow and the best combo of HTML, CSS and JAVASCRIPT. In addition, we added Linters for Html, Css and Javascript.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -53,6 +53,11 @@ A Capstone Group Porject developed with webpack, gitflow, githubflow and the bes
 - Add index.css file.
 - Add Linters.
 - Add Webpack config.
+- Add Item to homepage
+- Add Likes and likes count
+- Add comments pop, create comments, load comments and comments count
+- Add Item counts to homepage
+- Add Test for count function using jest
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -128,14 +133,21 @@ I have added the linters or tests in order to avoid anykind of typos and ensure 
 - Twitter: [@twitterhandle](https://twitter.com/errytage)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/errytagedesigns/)
 
+👤 Joyce Cruz
+
+- GitHub: [@githubhandle](https://github.com/balatstar)
+- Twitter: [@twitterhandle](https://twitter.com/balatstar)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/joyce-ann-cruz-668a41a7/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] Hit The API, to create game leaders
-- [ ] Hit The API, to render leaders to the leaderboard
+- [ ] Add categories page
+- [ ] Add about us page
+- [ ] Add contact us page
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
