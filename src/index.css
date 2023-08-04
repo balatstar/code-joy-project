@@ -142,3 +142,9 @@ img {
 .meaDetails p {
   font-size: 0.7rem;
 }
+
+@media screen and (min-width: 500px) {
+  .meal {
+    width: 33%;
+  }
+}

@@ -1,6 +1,8 @@
 const { addLike, getAndUpdateLikes } = require('./addLike');
+
 const { handleModalToggle } = require('./modal');
 const { fetchMeal } = require('./renderDetails');
+
 
 const home = document.querySelector('#home');
 
@@ -38,7 +40,9 @@ const renderMeals = async (foods) => {
   home.innerHTML = allMeals.join('');
 
   const addLikes = document.querySelectorAll('.add_like');
+
   const comments = document.querySelectorAll('.comment');
+
 
   addLikes.forEach(async (btn) => {
     const mealsId = btn.querySelector('i').id;
