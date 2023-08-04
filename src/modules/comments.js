@@ -14,7 +14,6 @@ const appId = 'HWmRhYpaSgwk9IP9UqTB';
 const userName = document.querySelector('#name');
 const userComment = document.querySelector('#comment');
 
-
 const getComments = async (id) => {
   console.log(id);
   const endpoints = `${baseUrl}/apps/${appId}`;
@@ -68,6 +67,7 @@ const postComment = async (mealId) => {
     return data;
   } catch (error) {
     console.log(error);
+    return [];
   }
 };
 
