@@ -1,0 +1,145 @@
+* {
+  box-sizing: border-box;
+}
+
+nav,
+main,
+footer,
+div,
+section {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: url("./images/flower.jpg") no-repeat right top/cover;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 14px;
+  position: relative;
+}
+
+.navbar {
+  background-color: #402608;
+}
+
+.nav-item {
+  margin: 10px 20px;
+  text-align: center;
+}
+
+.logo {
+  margin: 0 20px;
+  width: 217px;
+  height: 60px;
+  background: url("./images/logo.png") center center/cover;
+  cursor: pointer;
+}
+
+.nav-link {
+  color: #e6ddd0;
+}
+
+.nav-link:hover {
+  color: #d6ad60;
+}
+
+main {
+  margin: 30px auto;
+}
+
+.class-item {
+  padding: 20px;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #402608;
+  border-color: #402608;
+}
+
+.btn-primary:hover,
+.btn-primary:active {
+  background-color: #d6ad60;
+  border-color: #402608;
+}
+
+footer {
+  border-top: 1px solid #333;
+}
+
+.license {
+  margin: 30px auto;
+}
+
+img {
+  width: 100%;
+}
+
+.like {
+  color: grey;
+}
+
+.liked {
+  color: red;
+}
+
+.meal {
+  width: 100%;
+}
+
+.meal h2 {
+  font-size: 1.5rem;
+}
+
+.meal p {
+  margin: 0;
+  font-size: 1rem;
+  text-align: end;
+  cursor: pointer;
+}
+
+.meal p i {
+  font-size: 1.5rem;
+}
+
+@media screen and (min-width: 500px) {
+  .meal {
+    width: 33%;
+  }
+}
+
+.bi-x-circle {
+  background: #f00;
+  padding: 0.5em;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.closeModal {
+  display: none;
+}
+
+.showModal {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  padding: 2em 1em;
+  background: #97949371;
+  backdrop-filter: blur(14px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modals {
+  background: #fff;
+  overflow-y: scroll;
+  height: 85vh;
+}
+
+.meaDetails p {
+  font-size: 0.7rem;
+}

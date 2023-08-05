@@ -1,0 +1,8 @@
+node_modules/
+src/.DS_Store
+modules/fetch.js
+fetch.js
+fetchID.js
+postComment.js
+renderDetailsBAK.js
+old/
